@@ -11,6 +11,9 @@ public class SnakeGame {
     }
 
     public SnakeGame(boolean[][] g, int x, int y){
+        int size = g.length;
+        headPosition = new int[2];
+        game = new boolean[size][size];
         for(int i = 0; i < g.length; i++){
             for(int j = 0; j < g[i].length; j++){
                 game[i][j] = g[i][j];
@@ -32,7 +35,7 @@ public class SnakeGame {
                 exhaustiveChecks ++;
                 if(game[i][j]){
                     length++;
-                    if(neighbors(i,j) == 1){
+                    if(neighbors(i,j) == 1 && i != headPosition[0] && j != headPosition[1]){
                         t[0] = i;
                         t[1] = j;
                     }
@@ -101,5 +104,8 @@ public class SnakeGame {
 
     private static int getRecursiveChecks(){
         return recursiveChecks;
+    }
+    public void printBoard(){
+
     }
 }
