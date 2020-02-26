@@ -1,6 +1,7 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 public class SnakeGameTester {
@@ -19,7 +20,23 @@ public class SnakeGameTester {
 
         SnakeGame t = new SnakeGame(game,0,2);
         t.findTailExhaustive();
-        assertEquals(exp, t.findTailExhaustive());
+        assertArrayEquals(exp, t.findTailExhaustive());
 
+    }
+
+    @Test
+    public void recursiveTest1(){
+        boolean[][] game = {{false,false,true,false,false},
+                            {false,false,true,false,false},
+                            {false,false,true,false,false},
+                            {false,false,false,false,false},
+                            {false,false,false,false,false}};
+        int x = 0;
+        int y = 2;
+        int[] exp = {2,2,3};
+
+        SnakeGame t = new SnakeGame(game,0,2);
+        t.findTailRecursive();
+        assertArrayEquals(exp, t.findTailRecursive());
     }
 }
