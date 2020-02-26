@@ -23,6 +23,7 @@ public class SnakeGame {
         headPosition [1] = y;
     }
 
+
     public int[] findTailExhaustive(){
         resetCounter();
         int[] t = new int[3];
@@ -82,17 +83,29 @@ public class SnakeGame {
     }
 
     public int[] findTailRecursive(){
+        resetCounter();
+        int[] t = findTailRecursive(headPosition,headPosition);
+        return new int[]{t[0],t[1],getLength()};
+    }
+
+    private int[] findTailRecursive(int[] currentPosition, int[] previousPosition){
+        recursiveChecks++;
         int[] t = new int[2];
 
         return t;
     }
 
-    private int[] fintTailRecursive(int[] currentPosition, int[] previousPosition){
-        int[] t = new int[2];
-
-        return t;
+    private int getLength(){
+        int l = 0;
+        for(int i = 0; i < game.length; i++){
+            for(int j = 0; j < game[i].length; j++){
+                if(game[i][j]){
+                    l++;
+                }
+            }
+        }
+        return l;
     }
-
     private void resetCounter(){
         exhaustiveChecks = 0;
         recursiveChecks = 0;

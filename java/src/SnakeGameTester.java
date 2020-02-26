@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class SnakeGameTester {
+
+    // Return the array's int not the address for the tests
     @Test
     public void exhaustiveTest1(){
         boolean[][] game = {{false,false,true,false,false},
