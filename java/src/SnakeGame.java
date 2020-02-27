@@ -82,30 +82,40 @@ public class SnakeGame {
     private int[] findTailRecursive(int[] currentPosition, int[] previousPosition){
         // Base case
         if(currentPosition[0] != headPosition[0] || currentPosition[1] != headPosition[1] && neighbors(currentPosition[0],currentPosition[1]) == 1){
+            System.out.println("testb");
+            recursiveChecks++;
             return currentPosition;
         }
-
-        if(currentPosition[0] + 1 != previousPosition[0] && currentPosition[0] + 1 < game.length && game[currentPosition[0]+1][currentPosition[1]]){
+        // checks one down
+        if(currentPosition[0] < game.length && currentPosition[0] + 1 != previousPosition[0] && game[currentPosition[0]+1][currentPosition[1]]){
             previousPosition[0] = currentPosition[0];
             currentPosition[0] = currentPosition[0]+1;
             recursiveChecks++;
+            System.out.println("test1");
         }
-        else if(currentPosition[0] - 1 != previousPosition[0] && currentPosition[0] - 1 >= 0 && game[currentPosition[0]-1][currentPosition[1]]){
+        // checks one up
+        else if(currentPosition[0] > 0 && currentPosition[0] - 1 != previousPosition[0]  && game[currentPosition[0]-1][currentPosition[1]]){
             previousPosition[0] = currentPosition[0];
             currentPosition[0] = currentPosition[0]-1;
             recursiveChecks++;
+            System.out.println("test2");
         }
-        else if(currentPosition[1] + 1 != previousPosition[1] && currentPosition[1] + 1 < game.length && game[currentPosition[0]][currentPosition[1]+1]){
+        // checks one to the right
+        else if(currentPosition[1] < game.length-1 && currentPosition[1] + 1 != previousPosition[1] && game[currentPosition[0]][currentPosition[1]+1]){
             previousPosition[1] = currentPosition[1];
             currentPosition[1] = currentPosition[1]+1;
             recursiveChecks++;
+            System.out.println("test3");
         }
-        else if(currentPosition[1] - 1 != previousPosition[1] && currentPosition[1] - 1 >= 0 && game[currentPosition[0]][currentPosition[1]-1]){
+        // checks one to the left
+        else if(currentPosition[1] > 0 && currentPosition[1] - 1 != previousPosition[1] && game[currentPosition[0]][currentPosition[1]-1]){
             previousPosition[1] = currentPosition[1];
             currentPosition[1] = currentPosition[0]-1;
             recursiveChecks++;
+            System.out.println("test4");
         }
-        return findTailRecursive(currentPosition, previousPosition);
+
+        return findTailRecursive(currentPosition,previousPosition);
     }
 
     private int getLength(){

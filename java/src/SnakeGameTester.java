@@ -26,14 +26,14 @@ public class SnakeGameTester {
 
     @Test
     public void recursiveTest1(){
-        boolean[][] game = {{false,false,true,false,false},
-                            {false,false,true,false,false},
-                            {false,false,true,false,false},
+        boolean[][] game = {{false,false,true,true,true},
+                            {false,false,false,false,false},
+                            {false,false,false,false,false},
                             {false,false,false,false,false},
                             {false,false,false,false,false}};
         int x = 0;
         int y = 2;
-        int[] exp = {2,2,3};
+        int[] exp = {0,4,3};
 
         SnakeGame t = new SnakeGame(game,0,2);
         t.findTailRecursive();
