@@ -80,42 +80,51 @@ public class SnakeGame {
     }
 
     private int[] findTailRecursive(int[] currentPosition, int[] previousPosition){
+        int[] nextPosition = new int[2];
+        nextPosition[0] = currentPosition[0];
+        nextPosition[1] = currentPosition[1];
         // Base case
-        if(currentPosition[0] != headPosition[0] || currentPosition[1] != headPosition[1] && neighbors(currentPosition[0],currentPosition[1]) == 1){
-            System.out.println("testb");
-            recursiveChecks++;
-            return currentPosition;
+        if((nextPosition[0] != headPosition[0] && nextPosition[1] == headPosition[1]) || (nextPosition[0] == headPosition[0] && nextPosition[1] != headPosition[1]) || (nextPosition[0] != headPosition[0] && nextPosition[1] != headPosition[1]) &&neighbors(nextPosition[0],nextPosition[1]) == 1){
+            if(neighbors(nextPosition[0],nextPosition[1]) == 1) {
+                System.out.println("testb");
+                recursiveChecks++;
+                return currentPosition;
+            }
         }
         // checks one down
-        if(currentPosition[0] < game.length && currentPosition[0] + 1 != previousPosition[0] && game[currentPosition[0]+1][currentPosition[1]]){
-            previousPosition[0] = currentPosition[0];
-            currentPosition[0] = currentPosition[0]+1;
+        if(currentPosition[0]+1 < game.length && currentPosition[0] + 1 != previousPosition[0] && game[currentPosition[0]+1][currentPosition[1]]){
+            nextPosition [0] = currentPosition[0] + 1;
+            nextPosition [1] = currentPosition[1];
             recursiveChecks++;
             System.out.println("test1");
+            return findTailRecursive(nextPosition, currentPosition);
         }
         // checks one up
-        else if(currentPosition[0] > 0 && currentPosition[0] - 1 != previousPosition[0]  && game[currentPosition[0]-1][currentPosition[1]]){
-            previousPosition[0] = currentPosition[0];
-            currentPosition[0] = currentPosition[0]-1;
+        if(currentPosition[0]-1 >= 0 && currentPosition[0] - 1 != previousPosition[0] && game[currentPosition[0]-1][currentPosition[1]]){
+            nextPosition [0] = currentPosition[0] - 1;
+            nextPosition [1] = currentPosition[1];
             recursiveChecks++;
             System.out.println("test2");
+            return findTailRecursive(nextPosition, currentPosition);
         }
         // checks one to the right
-        else if(currentPosition[1] < game.length-1 && currentPosition[1] + 1 != previousPosition[1] && game[currentPosition[0]][currentPosition[1]+1]){
-            previousPosition[1] = currentPosition[1];
-            currentPosition[1] = currentPosition[1]+1;
+        if(currentPosition[1]+1 < game.length && currentPosition[1] + 1 != previousPosition[1] && game[currentPosition[0]][currentPosition[1]+1]){
+            nextPosition [0] = currentPosition[0];
+            nextPosition [1] = currentPosition[1] + 1;
             recursiveChecks++;
             System.out.println("test3");
+            return findTailRecursive(nextPosition, currentPosition);
         }
         // checks one to the left
-        else if(currentPosition[1] > 0 && currentPosition[1] - 1 != previousPosition[1] && game[currentPosition[0]][currentPosition[1]-1]){
-            previousPosition[1] = currentPosition[1];
-            currentPosition[1] = currentPosition[0]-1;
+        if(currentPosition[1]-1 >= 0 && currentPosition[1] - 1 != previousPosition[1] && game[currentPosition[0]][currentPosition[1]-1]){
+            nextPosition [0] = currentPosition[0];
+            nextPosition [1] = currentPosition[1] - 1;
             recursiveChecks++;
             System.out.println("test4");
+            return findTailRecursive(nextPosition, currentPosition);
         }
 
-        return findTailRecursive(currentPosition,previousPosition);
+        return new int[2];
     }
 
     private int getLength(){
