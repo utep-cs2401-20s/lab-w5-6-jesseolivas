@@ -92,7 +92,6 @@ public class SnakeGame {
         // Base case, returned once tail is found
         if((nextPosition[0] != headPosition[0] && nextPosition[1] == headPosition[1]) || (nextPosition[0] == headPosition[0] && nextPosition[1] != headPosition[1]) || (nextPosition[0] != headPosition[0] && nextPosition[1] != headPosition[1]) &&neighbors(nextPosition[0],nextPosition[1]) == 1){
             if(neighbors(nextPosition[0],nextPosition[1]) == 1) {
-                System.out.println("testb");
                 recursiveChecks++;
                 return currentPosition;
             }
@@ -102,7 +101,6 @@ public class SnakeGame {
             nextPosition [0] = currentPosition[0] + 1;
             nextPosition [1] = currentPosition[1];
             recursiveChecks++;
-            System.out.println("test1");
             return findTailRecursive(nextPosition, currentPosition);
         }
         // checks one up
@@ -110,7 +108,6 @@ public class SnakeGame {
             nextPosition [0] = currentPosition[0] - 1;
             nextPosition [1] = currentPosition[1];
             recursiveChecks++;
-            System.out.println("test2");
             return findTailRecursive(nextPosition, currentPosition);
         }
         // checks one to the right
@@ -118,7 +115,6 @@ public class SnakeGame {
             nextPosition [0] = currentPosition[0];
             nextPosition [1] = currentPosition[1] + 1;
             recursiveChecks++;
-            System.out.println("test3");
             return findTailRecursive(nextPosition, currentPosition);
         }
         // checks one to the left
@@ -126,7 +122,6 @@ public class SnakeGame {
             nextPosition [0] = currentPosition[0];
             nextPosition [1] = currentPosition[1] - 1;
             recursiveChecks++;
-            System.out.println("test4");
             return findTailRecursive(nextPosition, currentPosition);
         }
 
